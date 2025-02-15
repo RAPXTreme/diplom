@@ -1,39 +1,8 @@
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--    <title>{{ 'Edit Book' if book else 'Add New Book' }}</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--    <h1>{{ 'Edit Book' if book else 'Add New Book' }}</h1>-->
-<!--   <form action="/books/new" method="post" enctype="multipart/form-data">-->
-<!--    <label>Title:</label>-->
-<!--    <input type="text" name="title" required>-->
-
-<!--    <label>Author:</label>-->
-<!--    <input type="text" name="author" required>-->
-
-<!--    <label>Description:</label>-->
-<!--    <textarea name="description" required></textarea>-->
-
-<!--    <label>Publish Date:</label>-->
-<!--    <input type="date" name="publish_date" required>-->
-
-<!--    <label for="user_id">User ID:</label>-->
-<!--        <input type="number" id="user_id" name="user_id" value="{{ book.user_id if book else '' }}" required>-->
-
-<!--    <label>Upload Image:</label>-->
-<!--    <input type="file" name="file">-->
-
-<!--    <button type="submit">Add Book</button>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
-
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ 'Edit Book' if book else 'Add New Book' }}</title>
+    <title>Bookstore</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
     <h1>{{ 'Edit Book' if book else 'Add New Book' }}</h1>
@@ -48,8 +17,11 @@
         <input type="text" id="title" name="title" value="{{ book.title if book else '' }}" required>
         <label for="user_id">User ID:</label>
         <input type="number" id="user_id" name="user_id" value="{{ book.user_id if book else '' }}" required>
+        <label for="price">price</label>
+        <input type="text" id="price" name="price" value="{{ book.price if book else '' }}" required">
         <label for="photo_path">photo_path</label>
         <input type="file" id="photo_path" name="photo_path" required >
+
         <button type="submit">{{ 'Update' if book else 'Add' }}</button>
     </form>
 </body>

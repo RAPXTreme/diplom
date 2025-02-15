@@ -2,7 +2,7 @@ from typing import Type
 
 from sqlalchemy.orm import Session
 from datetime import date
-from app.models import User, Book
+from app.models import User, Book, Comment, Like
 from database import get_db
 
 # Функции для работы с пользователями
@@ -25,8 +25,8 @@ def authenticate_user(db: Session, username: str, password: str) -> User:
 
 # Функции для работы с книгами
 
-def add_book_db(db: Session, author: str, description: str, publish_date: date, title: str, user_id: int, photo_path: str) -> Book:
-    new_book = Book(author=author, description=description, publish_date=publish_date, title=title, user_id=user_id, photo_path=f'/static/{photo_path}')
+def add_book_db(db: Session, author: str, description: str, publish_date: date, title: str, user_id: int, photo_path: str, price: str) -> Book:
+    new_book = Book(author=author, description=description, publish_date=publish_date, title=title, user_id=user_id, photo_path=f'/static/{photo_path}', price=price)
     db.add(new_book)
     db.commit()
     db.refresh(new_book)
@@ -56,3 +56,4 @@ def delete_book_db(db: Session, book_id: int) -> bool:
         db.commit()
         return True
     return False
+

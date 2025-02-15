@@ -2,31 +2,60 @@
 <html>
 <head>
     <title>Bookstore</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
 </head>
 <body>
     <h1>Bookstore</h1>
     <a href="/register">Register</a>
     <a href="/login">Login</a>
     <a href="/books/new">Add New Book</a>
-    <ul>
+    <div class="books-grid">
+        <ul>
         {% for book in books %}
-        <li>
-            <h3>{{ book.title }} by {{ book.author }}</h3>
-            <p>{{ book.description }}</p>
-            <p>Published: {{ book.publish_date }}</p>
+        <li class="book-card">
+            <div class="book-cover">
+                {% if book.photo_path %}
+                    <img src="{{ book.photo_path }}" alt="{{ book.title }} cover">
+                {% else %}
+                    <div class="no-cover">No cover available</div>
+                {% endif %}
+            </div>
+            <div class="book-info">
+                <h3>{{ book.title }}</h3>
+                <p class="author">{{ book.author }}</p>
+                <p class="description">{{ book.description }}</p>
+                <p class="publish-date">Published: {{ book.publish_date }}</p>
+                <p class="price">Price: ${{ book.price }}</p>
 
-            {% if book.photo_path %}
-                <img src="{{ book.photo_path }}" alt="{{ book.title }} cover">
-            {% else %}
-                <p>No cover available</p>
-            {% endif %}
+                <div class="buttons">
+                    <a href="/books/{{ book.id }}/edit" class="btn">Edit</a>
+                    <form action="/books/{{ book.id }}/delete" method="post" style="display: inline;">
+                        <button type="submit" class="btn btn-delete">Delete</button>
+                    </form>
+                </div>
 
-            <a href="/books/{{ book.id }}/edit">Edit</a>
-            <form action="/books/{{ book.id }}/delete" method="post">
-                <button type="submit">Delete</button>
-            </form>
+                <div class="likes">
+                    <form action="/books/{{ book.id }}/like" method="post">
+                        <button type="submit" class="btn">Like ({{ book.likes }})</button>
+                    </form>
+                </div>
+
+                <div class="comments">
+                    <h4>Comments</h4>
+                    <ul>
+                        {% for comment in book.comments %}
+                        <li>{{ comment.text }}</li>
+                        {% endfor %}
+                    </ul>
+                    <form action="/books/{{ book.id }}/comment" method="post">
+                        <input type="text" name="comment" placeholder="Add a comment..." required>
+                        <button type="submit" class="btn">Post</button>
+                    </form>
+                </div>
+            </div>
         </li>
         {% endfor %}
-    </ul>
+        </ul>
+    </div>
 </body>
 </html>

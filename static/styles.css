@@ -1,0 +1,189 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-top: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #007BFF;
+    margin: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.books-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.book-card {
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 18%; /* уменьшили ширину карточки */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-cover img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+.no-cover {
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.book-info h3 {
+    margin: 10px 0;
+    font-size: 16px; /* уменьшили размер шрифта */
+}
+
+.book-info .author {
+    color: #666;
+    font-size: 12px; /* уменьшили размер шрифта */
+}
+
+.book-info .description {
+    font-size: 12px; /* уменьшили размер шрифта */
+}
+
+.book-info .publish-date {
+    font-size: 12px; /* уменьшили размер шрифта */
+    color: #888;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px; /* уменьшили размер кнопок */
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px; /* уменьшили размер шрифта */
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.likes button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.comments input {
+    width: 80%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.book-info .price {
+    font-size: 14px;
+    color: #888;
+}
+
+.comments {
+    margin-top: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+.comments h4 {
+    margin: 10px 0;
+}
+
+.comments ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comments li {
+    background-color: #f9f9f9;
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.comments form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.comments input[type="text"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.comments button[type="submit"] {
+    align-self: flex-end;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.comments button[type="submit"]:hover {
+    background-color: #0056b3;
+}

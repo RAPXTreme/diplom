@@ -35,5 +35,12 @@ class BookUpdate(BookBase):
 class Book(BookBase):
     id: int
 
-    class Config:
-        from_attributes = True
+class Config:
+    from_attributes = True
+
+class Comment(BaseModel):
+    id: int
+    book_id: int
+    user_id: int
+    text: str
+    created_at: datetime

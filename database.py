@@ -6,6 +6,9 @@ engine = create_engine(SQL_DATABASE_URI)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
 from app.models import *
+
+
+
 def get_db():
     db = SessionLocal()
     try:

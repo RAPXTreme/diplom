@@ -1,26 +1,27 @@
+from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
-
-from app.models import *  # Импортируем модели перед Base
-from database import engine
-from database import Base  # Затем подключаем базу
-from app import app
+from app.models import *
+from database import engine, Base
 from sqlalchemy.exc import SQLAlchemyError
+from starlette.templating import Jinja2Templates
+import os
+from app import app
+from app.routes import router
 
-def create_tables():
-    try:
-        print("Создание таблиц...")
+
+
+app = FastAPI()
+
+try:
         Base.metadata.create_all(bind=engine)
-        print("Таблицы успешно созданы!")
-    except SQLAlchemyError as e:
+except SQLAlchemyError as e:
         print(f"Ошибка при создании таблиц: {e}")
+
 app.mount("/static", StaticFiles(directory="static"), name="static")
-if __name__ == "__main__":
-    create_tables()
+templates = Jinja2Templates(directory="templates")
 
-    import logging
-    logging.basicConfig(level=logging.INFO)
-    logger = logging.getLogger(__name__)
-    logger.info("Starting server...")
+def home(request):
+    return templates.TemplateResponse("home.html", {"request": request})
 
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080, log_level="info")
+
+app.include_router(router)
