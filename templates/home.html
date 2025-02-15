@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookstore</title>
+</head>
+<body>
+    <h1>Bookstore</h1>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+    <a href="/books/new">Add New Book</a>
+    <ul>
+        {% for book in books %}
+        <li>
+            <h3>{{ book.title }} by {{ book.author }}</h3>
+            <p>{{ book.description }}</p>
+            <p>Published: {{ book.publish_date }}</p>
+
+            {% if book.photo_path %}
+                <p><a href="{{ book.photo_path }}" target="_blank">View Cover</a></p>
+            {% else %}
+                <p>No cover available</p>
+            {% endif %}
+
+            <a href="/books/{{ book.id }}/edit">Edit</a>
+            <form action="/books/{{ book.id }}/delete" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
