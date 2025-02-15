@@ -1,3 +1,5 @@
+from starlette.staticfiles import StaticFiles
+
 from app.models import *  # Импортируем модели перед Base
 from database import engine
 from database import Base  # Затем подключаем базу
@@ -11,7 +13,7 @@ def create_tables():
         print("Таблицы успешно созданы!")
     except SQLAlchemyError as e:
         print(f"Ошибка при создании таблиц: {e}")
-
+app.mount("/static", StaticFiles(directory="static"), name="static")
 if __name__ == "__main__":
     create_tables()
 

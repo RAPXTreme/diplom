@@ -16,7 +16,7 @@
             <p>Published: {{ book.publish_date }}</p>
 
             {% if book.photo_path %}
-                <p><a href="{{ book.photo_path }}" target="_blank">View Cover</a></p>
+                <img src="{{ book.photo_path }}" alt="{{ book.title }} cover">
             {% else %}
                 <p>No cover available</p>
             {% endif %}
