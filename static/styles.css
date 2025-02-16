@@ -43,10 +43,10 @@ ul {
 .book-card {
     background-color: #fff;
     margin: 10px;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 18%; /* уменьшили ширину карточки */
+    width: 300px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: left;
     display: flex;
@@ -69,20 +69,19 @@ ul {
 
 .book-info h3 {
     margin: 10px 0;
-    font-size: 16px; /* уменьшили размер шрифта */
 }
 
 .book-info .author {
     color: #666;
-    font-size: 12px; /* уменьшили размер шрифта */
+    font-size: 14px;
 }
 
 .book-info .description {
-    font-size: 12px; /* уменьшили размер шрифта */
+    font-size: 14px;
 }
 
 .book-info .publish-date {
-    font-size: 12px; /* уменьшили размер шрифта */
+    font-size: 14px;
     color: #888;
 }
 
@@ -97,12 +96,11 @@ ul {
     background-color: #007BFF;
     color: white;
     border: none;
-    padding: 8px 12px; /* уменьшили размер кнопок */
+    padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 12px; /* уменьшили размер шрифта */
-    margin: 5px;
+    font-size: 14px;
 }
 
 .btn:hover {
@@ -117,6 +115,16 @@ ul {
     background-color: #c82333;
 }
 
+
+.book-card {
+    border: 2px solid black;
+    padding: 15px;
+    width: 30%;
+    display: inline-block;
+    margin: 10px;
+    text-align: center;
+}
+
 .likes button {
     background-color: red;
     color: white;
@@ -129,61 +137,4 @@ ul {
     width: 80%;
     padding: 5px;
     margin-top: 5px;
-}
-
-.book-info .price {
-    font-size: 14px;
-    color: #888;
-}
-
-.comments {
-    margin-top: 20px;
-    text-align: left;
-    width: 100%;
-}
-
-.comments h4 {
-    margin: 10px 0;
-}
-
-.comments ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-.comments li {
-    background-color: #f9f9f9;
-    margin: 5px 0;
-    padding: 5px 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-}
-
-.comments form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-}
-
-.comments input[type="text"] {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.comments button[type="submit"] {
-    align-self: flex-end;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.comments button[type="submit"]:hover {
-    background-color: #0056b3;
 }

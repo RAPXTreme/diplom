@@ -1,12 +1,12 @@
 import datetime
 import logging
-from app import schemas
 from fastapi import APIRouter, HTTPException, Depends, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from app.schemas import UserCreate, UserLogin, BookCreate, BookUpdate, Book as BookSchema
 from app.crud import create_user, authenticate_user, add_book_db, get_all_books_db, get_book_db, update_book_db, delete_book_db
+from database import get_db
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
@@ -19,7 +19,7 @@ from database import get_db
 from app.models import Book
 import shutil
 import os
-from typing import List
+
 
 UPLOAD_DIR = "static/"
 os.makedirs(UPLOAD_DIR, exist_ok=True)  # Создадим папку, если её нет
@@ -100,9 +100,9 @@ async def create_book_form(request: Request):
 @router.post("/books", response_class=HTMLResponse)
 async def create_book(request: Request, db: Session = Depends(get_db), author: str = Form(...),
                       description: str = Form(...), publish_date: datetime.date = Form(...), title: str = Form(...),
-                      user_id: int = Form(...), photo_path:str = Form(...), price: str = Form(...)):
+                      user_id: int = Form(...),price: str = Form(), photo_path:str = Form(...)):
     try:
-        add_book_db(db, author, description, publish_date, title, user_id, photo_path, price)
+        add_book_db(db, author, description, publish_date, title, user_id, photo_path)
         return RedirectResponse("/home", status_code=303)
     except Exception as e:
         logger.error(f"Error in create_book: {e}")
@@ -138,7 +138,3 @@ async def delete_book(request: Request, book_id: int, db: Session = Depends(get_
         raise HTTPException(status_code=500, detail="Internal Server Error")
 
 
-@router.get("/", response_class=HTMLResponse)
-async def home(request: Request, db: Session = Depends(get_db)):
-    books = get_all_books_db(db)
-    return templates.TemplateResponse("home.html", {"request": request, "books": books})
