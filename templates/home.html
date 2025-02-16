@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Bookstore</title>
-    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Bookstore</h1>
-    <a href="/register">Register</a>
-    <a href="/login">Login</a>
-    <a href="/books/new">Add New Book</a>
-    <div class="books-grid">
-        <ul>
-        {% for book in books %}
-        <li class="book-card">
-            <div class="book-cover">
-                {% if book.photo_path %}
-                    <img src="{{ book.photo_path }}" alt="{{ book.title }} cover">
-                {% else %}
-                    <div class="no-cover">No cover available</div>
-                {% endif %}
-            </div>
-            <div class="book-info">
-                <h3>{{ book.title }}</h3>
-                <p class="author">{{ book.author }}</p>
-                <p class="description">{{ book.description }}</p>
-                <p class="publish-date">Published: {{ book.publish_date }}</p>
-                <p class="price">Price: ${{ book.price }}</p>
 
-                <div class="buttons">
-                    <a href="/books/{{ book.id }}/edit" class="btn">Edit</a>
-                    <form action="/books/{{ book.id }}/delete" method="post" style="display: inline;">
-                        <button type="submit" class="btn btn-delete">Delete</button>
-                    </form>
-                </div>
-
-                <div class="likes">
-                    <form action="/books/{{ book.id }}/like" method="post">
-                        <button type="submit" class="btn">Like ({{ book.likes }})</button>
-                    </form>
-                </div>
-
-                <div class="comments">
-                    <h4>Comments</h4>
-                    <ul>
-                        {% for comment in book.comments %}
-                        <li>{{ comment.text }}</li>
-                        {% endfor %}
-                    </ul>
-                    <form action="/books/{{ book.id }}/comment" method="post">
-                        <input type="text" name="comment" placeholder="Add a comment..." required>
-                        <button type="submit" class="btn">Post</button>
-                    </form>
-                </div>
-            </div>
-        </li>
-        {% endfor %}
-        </ul>
+    <!-- Шапка -->
+    <div class="header">
+        <div class="logo">
+            <h1>Библиотека</h1>
+        </div>
+        <div class="nav">
+            <a href="/register">Регистрация</a>
+            <a href="/login">Вход</a>
+            <a href="/books/new" class="btn">Добавить книгу</a>
+        </div>
     </div>
+
+    <div class="container">
+        <h2>Список книг</h2>
+
+        <div class="books-grid">
+            {% for book in books %}
+            <div class="book">
+                <div class="book-cover">
+                    {% if book.photo_path %}
+                        <img src="{{ book.photo_path }}" alt="Обложка книги">
+                    {% else %}
+                        <div class="no-cover">Нет изображения</div>
+                    {% endif %}
+                </div>
+                <h3>{{ book.title }}</h3>
+                <p><strong>Автор:</strong> {{ book.author }}</p>
+                <p>{{ book.description }}</p>
+
+                <!-- Лайк -->
+                <form action="/books/{{ book.id }}/like" method="post">
+                    <button type="submit" class="btn-like">❤️ ({{ book.likes }})</button>
+                </form>
+
+                <!-- Удаление -->
+                <form action="/books/{{ book.id }}/delete" method="post" onsubmit="return confirm('Удалить книгу?');">
+                    <button type="submit" class="btn btn-delete">Удалить</button>
+                </form>
+
+                <!-- Редактирование -->
+                <a href="/books/{{ book.id }}/edit" class="edit-btn">Редактировать</a>
+
+                <!-- Комментарии -->
+                <h4>Комментарии</h4>
+                <ul class="comments">
+                    {% for comment in book.comments %}
+                        <li>{{ comment.text }} (от пользователя {{ comment.user_id }})</li>
+                    {% endfor %}
+                </ul>
+
+                <form action="/books/{{ book.id }}/comments" method="post">
+                    <input type="hidden" name="book_id" value="{{ book.id }}">
+                    <input type="text" name="text" placeholder="Ваш комментарий" required>
+                    <input type="hidden" name="user_id" value="1">
+                    <button type="submit" class="btn">Добавить комментарий</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
 </body>
 </html>

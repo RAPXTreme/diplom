@@ -13,7 +13,7 @@ class User(Base):
     password = Column(String, nullable=False)
     reg_date = Column(DateTime, default=datetime.utcnow)  # utcnow лучше для кросс-часовых поясов
 
-    books = relationship("Book", back_populates="user", cascade="all, delete-orphan")  # Каскадное удаление
+    # books = relationship("Book", back_populates="user", cascade="all, delete-orphan")  # Каскадное удаление
 
 
 
@@ -25,12 +25,12 @@ class Book(Base):
     author = Column(String, nullable=False, index=True)
     description = Column(String, nullable=False)
     publish_date = Column(Date, nullable=False)
-    user_id = Column(Integer, ForeignKey('users.id', ondelete="CASCADE"))
+    # user_id = Column(Integer, ForeignKey('users.id', ondelete="CASCADE"))
     price = Column(Integer, default=0.0)
     photo_path = Column(String, nullable=True)
     likes = Column(Integer, default=0)
 
-    user = relationship("User", back_populates="books")
+    # user = relationship("User", back_populates="books")
     comments = relationship("Comment", back_populates="book")
 
 class Comment(Base):
@@ -38,7 +38,9 @@ class Comment(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     book_id = Column(Integer, ForeignKey("books.id", ondelete="CASCADE"))
-    text = Column(String)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
+    text = Column(Text, nullable=False)
+    created_at = Column(Date, nullable=False)
 
     book = relationship("Book", back_populates="comments")
-
+    user = relationship("User")

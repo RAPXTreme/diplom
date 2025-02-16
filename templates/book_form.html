@@ -1,25 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bookstore</title>
+    <title>Edit Book</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Add New Book</h1>
-    <form action="/books" method="post">
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" required>
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description" required>
-        <label for="publish_date">Publish Date:</label>
-        <input type="date" id="publish_date" name="publish_date" required>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required>
-        <label for="user_id">User ID:</label>
-        <input type="number" id="user_id" name="user_id" required>
-        <label for="photo_path">photo_path</label>
-        <input type="photo_path" id=" photo_path" name="photo_path" required >
-        <button type="submit">Add Book</button>
-    </form>
+    <div class="container">
+        <h1>Edit "{{ book.title }}"</h1>
+
+        <!-- Форма отправляется на URL книги с ID -->
+        <form action="/books/{{ book.id }}" method="post" enctype="multipart/form-data">
+            <!-- Автор -->
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" value="{{ book.author }}" required>
+            </div>
+
+            <!-- Название -->
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" value="{{ book.title }}" required>
+            </div>
+
+            <!-- Описание -->
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required>{{ book.description }}</textarea>
+            </div>
+
+            <!-- Дата публикации -->
+            <div class="form-group">
+                <label for="publish_date">Publish Date:</label>
+                <input type="date" id="publish_date" name="publish_date"
+                       value="{{ book.publish_date.strftime('%Y-%m-%d') }}" required>
+            </div>
+
+            <!-- Цена -->
+            <div class="form-group">
+                <label for="price">Price ($):</label>
+                <input type="number" id="price" name="price"
+                       value="{{ book.price }}" min="0" required>
+            </div>
+
+            <!-- Обложка -->
+            <div class="form-group">
+                <label for="photo">Cover Image (optional):</label>
+                <input type="file" id="photo" name="photo">
+                {% if book.photo_path %}
+                    <div class="current-cover">
+                        <span>Current cover:</span>
+                        <img src="{{ book.photo_path }}" alt="Current cover" width="100">
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+    </div>
 </body>
 </html>

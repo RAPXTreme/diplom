@@ -1,19 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Bookstore</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Register</h1>
-    <form action="/register" method="post">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Register</button>
-    </form>
+
+    <!-- Шапка -->
+    <div class="header">
+        <div class="logo">
+            <h1>Библиотека</h1>
+        </div>
+        <div class="nav">
+            <a href="/">🏠 Домой</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Регистрация</h2>
+
+        <div class="form-container">
+            <form action="/register" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="username">Имя пользователя:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

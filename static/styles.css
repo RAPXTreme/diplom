@@ -1,112 +1,107 @@
-/* styles.css */
-
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
     margin: 0;
     padding: 0;
-    text-align: center;
+    background-color: #f4f4f4;
 }
 
-h1 {
-    color: #333;
-    margin-top: 20px;
-}
-
-a {
-    text-decoration: none;
-    color: #007BFF;
-    margin: 10px;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.books-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.book-card {
-    background-color: #fff;
-    margin: 10px;
+/* Шапка */
+.header {
+    background-color: #333;
+    color: white;
     padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 300px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.book-cover img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 10px auto;
-}
-
-.no-cover {
-    text-align: center;
-    color: #aaa;
-    font-size: 14px;
-}
-
-.book-info h3 {
-    margin: 10px 0;
-}
-
-.book-info .author {
-    color: #666;
-    font-size: 14px;
-}
-
-.book-info .description {
-    font-size: 14px;
-}
-
-.book-info .publish-date {
-    font-size: 14px;
-    color: #888;
-}
-
-.buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 
-.btn {
+.header .logo h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header .nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.header .nav .btn {
+    background-color: #28a745;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+.header .nav .btn:hover {
+    background-color: #218838;
+}
+
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Сетка книг */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Карточка книги */
+.book {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.book-cover img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.no-cover {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* Кнопки */
+button, .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
     background-color: #007BFF;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
-    font-size: 14px;
 }
 
-.btn:hover {
+button:hover, .btn:hover {
     background-color: #0056b3;
 }
 
+/* Удаление */
 .btn-delete {
     background-color: #dc3545;
 }
@@ -115,26 +110,228 @@ ul {
     background-color: #c82333;
 }
 
+/* Лайк */
+.btn-like {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: red;
+}
 
-.book-card {
-    border: 2px solid black;
-    padding: 15px;
-    width: 30%;
+/* Редактировать */
+.edit-btn {
     display: inline-block;
-    margin: 10px;
+    padding: 8px 12px;
+    background-color: #ffc107;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.edit-btn:hover {
+    background-color: #e0a800;
+}
+
+/* Комментарии */
+.comments {
+    list-style-type: none;
+    padding: 0;
+    font-size: 14px;
+}
+
+.comments li {
+    background: #eee;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+/* Формы */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     text-align: center;
 }
 
-.likes button {
-    background-color: red;
+form input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
     color: white;
     border: none;
-    padding: 5px 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-.comments input {
-    width: 80%;
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Форма */
+.form-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.form-container label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.form-container input, .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container textarea {
+    height: 100px;
+    resize: none;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Стили только для страницы редактирования книги */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Контейнер формы */
+.edit-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+/* Заголовок */
+.edit-title {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Поля ввода */
+.edit-form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.edit-form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.edit-form-group input,
+.edit-form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.edit-form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Поле выбора файла */
+input[type="file"] {
+    border: none;
     padding: 5px;
+}
+
+/* Кнопки */
+.edit-form-actions {
+    margin-top: 15px;
+}
+
+.edit-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.edit-btn-primary {
+    background: #007bff;
+}
+
+.edit-btn-primary:hover {
+    background: #0056b3;
+}
+
+.edit-btn-secondary {
+    background: #6c757d;
+}
+
+.edit-btn-secondary:hover {
+    background: #5a6268;
+}
+
+/* Обложка книги */
+.edit-cover-preview {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.edit-cover-preview img {
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-top: 5px;
 }

@@ -25,7 +25,7 @@ class BookBase(BaseModel):
     publish_date: date
     title: str
     photo_path: str
-    price: str
+    price: int
 
 class BookCreate(BookBase):
     user_id: int
@@ -38,3 +38,15 @@ class Book(BookBase):
 
     class Config:
         from_attributes = True
+
+
+class PaymentData(BaseModel):
+    amount: int           # сумма в минимальных единицах валюты (например, центы для USD)
+    currency: str = "usd" # валюта
+    description: str = "Оплата через FastAPI"
+
+
+class CommentCreate(BaseModel):
+    text: str
+    book_id: int
+    user_id: int

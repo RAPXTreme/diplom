@@ -1,27 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Bookstore</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'Редактировать книгу' if book else 'Добавить книгу' }}</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>{{ 'Edit Book' if book else 'Add New Book' }}</h1>
-    <form action="{{ '/books/' ~ book.id if book else '/books' }}" method="post">
-        <label for="author">Author:</label>
-        <input type="text" id="author" name="author" value="{{ book.author if book else '' }}" required>
-        <label for="description">Description:</label>
-        <input type="text" id="description" name="description" value="{{ book.description if book else '' }}" required>
-        <label for="publish_date">Publish Date:</label>
-        <input type="date" id="publish_date" name="publish_date" value="{{ book.publish_date if book else '' }}" required>
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" value="{{ book.title if book else '' }}" required>
-        <label for="user_id">User ID:</label>
-        <input type="number" id="user_id" name="user_id" value="{{ book.user_id if book else '' }}" required>
-        <label for="price">Price</label>
-        <input type="text" id="price" name="price" value="{{ book.price if book else '' }}" required>
-        <label for="photo_path">photo_path</label>
-        <input type="file" id="photo_path" name="photo_path" required >
-        <button type="submit">{{ 'Update' if book else 'Add' }}</button>
-    </form>
+
+    <!-- Шапка -->
+    <div class="header">
+        <div class="logo">
+            <h1>Библиотека</h1>
+        </div>
+        <div class="nav">
+            <a href="/">Главная</a>
+            <a href="/register">Регистрация</a>
+            <a href="/login">Вход</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>{{ 'Редактировать книгу' if book else 'Добавить книгу' }}</h2>
+
+        <div class="form-container">
+            <form action="{{ '/books/' ~ book.id if book else '/books' }}" method="post" enctype="multipart/form-data">
+
+                <label for="title">Название:</label>
+                <input type="text" id="title" name="title" value="{{ book.title if book else '' }}" required>
+
+                <label for="author">Автор:</label>
+                <input type="text" id="author" name="author" value="{{ book.author if book else '' }}" required>
+
+                <label for="description">Описание:</label>
+                <textarea id="description" name="description" required>{{ book.description if book else '' }}</textarea>
+
+                <label for="publish_date">Дата публикации:</label>
+                <input type="date" id="publish_date" name="publish_date" value="{{ book.publish_date if book else '' }}" required>
+
+                <label for="price">Цена:</label>
+                <input type="number" id="price" name="price" value="{{ book.price if book else '' }}" required>
+
+                <label for="photo">Обложка книги:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+
+
+                <button type="submit" class="btn">{{ 'Обновить' if book else 'Добавить' }}</button>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>
